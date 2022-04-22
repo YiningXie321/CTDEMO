@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="trigBTN">Get Data</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+    
+    <script>
+        let ioURL = "https://io.adafruit.com/api/v2/xyn52021/feeds/testsensorfeed/data?";
+        let iolimitQ = "limit="
+        let iolimitN = 1000
+        let ioInclude = "include=value"
+        let ioST ="start_time="
+        let ioSTval="2022-03-13T00:00Z"
+        let ioET ="end_time="
+        let ioETval = "2022-03-14T00:00Z"
+        let ang=0
+        let data
+        let slider
+        let values = []
+        // let times = []
+
+        function preload(){
+            fetchData();
+            
+        }
+
+        function setup(){
+            createCanvas(800,800);
+            angleMode(DEGREES)
+            rectMode(CENTER)
+            // background(10,20,30);
+            // nofill()
+            stroke(255)
+            translate(width/3, height/3)
+            slider = createSlider(0,100);
+            slider.position(80,80);
+            slider.changed(fetchData);
+
+            colorMode(HSB, TWO_PI, 100, 1)
+        }
+
+        // function draw(){
+        //     fill(random(250), random(250), random(250))
+        //     values.forEach(v => {
+        //         circle((v-3080)*5.0, (v-3080)*5.0, random(5,40))
+        //         posx = fetchData
+        //     })
+        // }
+
+        function draw(){
+    
+        //    for(var i=0;i<200;i++){
+        //        push()
+        //        rotate(sin(frameCount +i)*100)
+        //        var r = map(sin(frameCount),-1,1,50,255)
+        //        rect(0,0,600-i*3, 600-i*3, 200-i)
+        //        pop()
+        //    }
+
+           let val = slider.value();
+           fill(0, val, 1)
+            values.forEach((v,i)=> {
+                push()
+                translate(width/2, height/2);
+                rotate(ang);
+
+                //fill(times[i].getMinutes()*random(val), times[i].getHours()*random(val),times[1].getDay()*random(val))
+                circle((v-3080)*ang/5-val, (v-3080)*ang/5+ang, 5)
+                square((v-3080)*10+val, (v-3080)*3, 10)
+                //line((v-3080)*10+val, (v-3080)*3, val,val-20);
+                pop()
+                
+                ang+= v/PI;
+
+            })
+        }
+
+        function fetchData(){
+            if(slider){
+                console.log(slider.value())
+                iolimitN = slider.value()
+            }
+            let assembleURL = ioURL+iolimitQ+iolimitN+"&"+ioInclude+"&"+ioST+ioSTval+"&"+ioET+ioETval
+            console.log(assembleURL)
+            data = loadJSON(assembleURL, dataHandler, errorHandler);
+            
+        }
+
+
+        function dataHandler(APIdata){
+            value=[]
+            times=[]
+            APIdata.forEach((element, i) => {
+            console.log(element.value);
+               values[i] = element.value
+            })
+
+        }
+        function errorHandler(APIerror){
+            console.error(APIerror);
+        }
+
+    </script>
+</body>
+</html>
