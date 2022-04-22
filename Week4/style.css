@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
+
+h1{
+    font-family: 'Lobster Two', cursive;
+    font-size: 50px;
+    text-align: center;
+    color: rgb(129, 83, 220);
+    margin: 80px;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background: rgb(204, 225, 255);
+}
+
+nav{
+    background: rgb(194, 194, 247);
+    width: 100%;
+    overflow: auto;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ 
+ul img{
+    float: left; 
+    width: 200px;
+    display: block;
+    padding: 10px 10px;
+}
+
+nav a{
+    float: right; 
+    width: 150px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    color: aliceblue;
+    padding: 40px 10px;
+    font-family: 'Sanchez', serif;
+}
+
+nav a:hover{
+    color: rgb(105, 11, 120);
+}
+
+.container{
+    margin: auto;
+    padding: 20px 10px;
+    max-width: 1200px;
+    overflow: auto;
+}
+.a{
+    width: 300px;
+    height: 300px;
+}
+
+.gallery{
+    margin: 20px;
+    float:left;
+    width: 2000px;
+}
+
+.gallery img{
+    width: 300px;
+    height:300px;
+    padding: 20px;
+    float: auto;
+    filter:grayscale(10%);
+    transition: 1s;
+}
+.gallery img:hover{
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
