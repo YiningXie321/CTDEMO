@@ -1,0 +1,77 @@
+@import url('./type.css');
+@import url('./colors.css');
+@import url('./reset.css');
+@import url('./grid.css');
+
+header{
+    width: auto;
+}
+
+nav{
+    background-color: var(--black);
+}
+
+nav ul{
+    padding:20px, 0, 20, 40;
+    margin:0px auto;
+    display: flex;
+    flex-direction: column;
+ }
+
+nav li{
+    margin:10px 0px;
+    border-bottom: 1px, solid var(--black); 
+ }
+
+ nav a{
+    color:whitesmoke;
+}
+
+@media (min-width:768px){
+    nav ul{
+        padding: 20px;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+img{
+    object-fit: cover;
+    width: 100%;
+}
+
+.image {
+    display: block;
+  }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #1d1d1d;
+    
+  }
+  
+  /* .text {
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .grid-item:hover .overlay {
+    opacity: 0.8;
+  } */
+
+
